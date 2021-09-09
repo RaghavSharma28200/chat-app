@@ -1,13 +1,26 @@
-import React from 'react'
+import React from 'react';
+import { Switch } from 'react-router';
 
-import './styles/main.scss'
+import './styles/main.scss';
 import 'rsuite/dist/styles/rsuite-default.css';
+import SingnIn from './pages/SignIn';
+import PrivateRoute from './components/PrivateRoute';
+import Home from './pages/home/Home';
+import PublicRoute from './components/PublicRoute';
+import { ProfileProvider } from './context/profile.context';
 
 function App() {
   return (
-    <div >
-      hello
-    </div>
+    <ProfileProvider>
+      <Switch>
+        <PublicRoute path="/signin">
+          <SingnIn />
+        </PublicRoute>
+        <PrivateRoute path="/">
+          <Home />
+        </PrivateRoute>
+      </Switch>
+    </ProfileProvider>
   );
 }
 
